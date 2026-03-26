@@ -1,31 +1,37 @@
 #include <iostream>
 using namespace std;
-int stack[5], n = 5, top = -1;
+
+// Changed name from 'stack' to 'stk' to avoid the error
+int stk[5], n = 5, top = -1;
+
 void push(int val) {
-if(top >= n-1)
-    cout<<"Stack Overflow"<<endl;
+if(top >=n-1)
+cout << "Stack Overflow" << endl;
 else {
     top++;
-    stack[top] = val;
+    stk[top] = val;
 }
 }
-void pop() {
-if(top <= -1)
-    cout<<"Stack Underflow"<<endl;
+
+void pop() {if(top <= -1)
+    cout << "Stack Underflow" << endl;
 else {
-    cout<<"Popped: "<< stack[top] <<endl;
-    top--;
+    cout << "Popped: " << stk[top] << endl;
+top--;
 }
 }
-void display() {
+
+void display()
+{
 if(top >= 0) {
-    cout<<"Stack elements: ";
+    cout << "Stack elements: ";
     for(int i = top; i >= 0; i--)
-        cout<< stack[i] <<" ";
-    cout<<endl;
-} else
-    cout<<"Stack is empty";
+cout << stk[i] << " ";
+    cout << endl;
+} else {
+    cout << "Stack is empty" << endl;}
 }
+
 int main() {
 push(10);
 push(20);
@@ -34,5 +40,4 @@ display();
 pop();
 display();
 return 0;
-getchar();
 }
