@@ -34,4 +34,5 @@ display();
 pop();
 display();
 return 0;
+getchar();
 }
