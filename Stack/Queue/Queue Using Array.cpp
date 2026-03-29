@@ -35,3 +35,20 @@ int queue(struct Queue *q)
     }
     return x;
 }
+void display(struct Queue q)
+{
+    for(int i=q.front+1;i<=q.rear;i++)
+        printf("%d ",q.Q[i]);
+    printf("\n");
+}
+int main()
+{
+    struct Queue q;
+    create(&q,5);
+    enqueue(&q,10);
+    enqueue(&q,20);
+    enqueue(&q,30);
+    display(q);
+    printf("%d ",queue(&q));
+    return 0;
+}
