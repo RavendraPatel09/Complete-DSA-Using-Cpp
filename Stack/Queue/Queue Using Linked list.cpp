@@ -53,5 +53,6 @@ int main()
     enqueue(40);
     enqueue(50);
     display();
+    printf("%d ",dequeue());
     return 0;
 }
