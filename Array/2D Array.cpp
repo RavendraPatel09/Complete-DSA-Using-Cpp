@@ -17,6 +17,14 @@ int main()
     B[0]=(int *)malloc(4*sizeof(int));//created in heap memory
     B[1]=(int *)malloc(4*sizeof(int));
     B[2]=(int *)malloc(4*sizeof(int));
+    for (i=0;i<3;i++)
+    {
+        for (j=0;j<4;j++)
+        {
+            printf("%d ",B[i][j]);
+        }
+        printf("\n");
+    }
     C=(int **)malloc(3*sizeof(int *));
     C[0]=(int *)malloc(4*sizeof(int));//created in heap memory
     C[1]=(int *)malloc(4*sizeof(int));
