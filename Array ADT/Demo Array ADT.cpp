@@ -25,13 +25,12 @@ int main()
     arr.length=0;
     printf("Enter the number of elements: ");
     scanf("%d",&arr.length);
-
     printf("Enter the elements: \n");
     for(i=0;i<arr.length;i++)
     {
         printf("Enter element %d: ",i+1);
         scanf("%d",&arr.A[i]);
     }
-    return 0;
     display(arr);
+    return 0;
 }
