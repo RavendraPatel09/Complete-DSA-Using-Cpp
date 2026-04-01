@@ -27,10 +27,8 @@ int main()
     scanf("%d",&arr.length);
     printf("Enter the elements: \n");
     for(i=0;i<arr.length;i++)
-    {
         printf("Enter element %d: ",i+1);
         scanf("%d",&arr.A[i]);
-    }
     display(arr);
     return 0;
 }
