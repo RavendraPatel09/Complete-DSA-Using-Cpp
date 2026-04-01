@@ -14,25 +14,19 @@ void display(struct Array arr)
     printf("%d ",arr.A[i]);
     
 }
-void append(struct Array *arr,int x)
-{
-    if(arr->length<arr->size)
-    arr->A[arr->length++]=x;
-}
-void insert(struct Array *arr,int index,int x)
+int LinearSearch(struct Array arr,int key)
 {
     int i;
-    if(index>=0 && index<=arr->length)
+    for(i=0;i<arr.length;i++)
     {
-        for(i=arr->length;i>index;i--)
-        arr->A[i]=arr->A[i-1];
-        arr->A[index]=x;
-        arr->length++;
+        if(key==arr.A[i])
+        return i;
     }
+    return -1;
 }
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
-insert(&arr,5,10);
+printf("Index of element is %d\n",LinearSearch(arr,6));
 display(arr);
 return 0;
 }
