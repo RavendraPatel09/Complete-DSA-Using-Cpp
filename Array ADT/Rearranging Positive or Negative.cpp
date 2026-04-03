@@ -95,7 +95,6 @@ int isSorted(struct Array arr)
 }
 void Rearrange(struct Array *arr)
 {
-    int i,j;
     int i=0,
     j=arr->length-1;
     while(i<j)
@@ -107,9 +106,6 @@ void Rearrange(struct Array *arr)
 }
 int main()
 {struct Array arr={{2,4,-2,4,5,7,-9,12,-49},10,9};
-// InsertSort(&arr,159);
-printf("Sorted: %d\n",isSorted(arr));
-display(arr);
 Rearrange(&arr);
 printf("Rearranged: \n");
 display(arr);
