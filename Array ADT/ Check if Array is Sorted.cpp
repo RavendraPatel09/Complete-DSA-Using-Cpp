@@ -85,8 +85,8 @@ void InsertSort(struct Array *arr,int x)
     arr->length++;
 }
 int main()
-{struct Array arr={{2,3,4,5,6},10,5};
-InsertSort(&arr,20);
+{struct Array arr={{100,300,400},10,3};
+InsertSort(&arr,159);
 display(arr);
 return 0;
 }
