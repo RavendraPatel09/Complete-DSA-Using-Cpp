@@ -46,7 +46,7 @@ void Set(struct Array *arr,int index,int x)
 }
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
-
+Set(&arr,0,10);
 display(arr);
 return 0;
 }

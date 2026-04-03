@@ -41,7 +41,6 @@ int Get(struct Array arr,int index)
 }
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
-
-display(arr);
+printf("%d",Get(arr,0));
 return 0;
 }
