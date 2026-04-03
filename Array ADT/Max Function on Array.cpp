@@ -56,7 +56,6 @@ int Max(struct Array arr)
 }
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
-
-display(arr);
+printf("%d",Max(arr));
 return 0;
 }
