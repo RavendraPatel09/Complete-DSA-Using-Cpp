@@ -93,5 +93,7 @@ void reverse(struct Array *arr)
 
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
+reverse(&arr);
+display(arr); 
 return 0;
 }
