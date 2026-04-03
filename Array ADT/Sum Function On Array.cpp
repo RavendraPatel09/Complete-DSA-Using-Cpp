@@ -78,6 +78,5 @@ float Avg(struct Array arr)
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
 printf("Sum of all elements is %d\n",Sum(arr));
-display(arr);
 return 0;
 }
