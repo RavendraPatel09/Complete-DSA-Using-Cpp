@@ -84,9 +84,19 @@ void InsertSort(struct Array *arr,int x)
     arr->A[i+1]=x;
     arr->length++;
 }
+int isSorted(struct Array arr)
+{
+    for(int i=0;i<arr.length-1;i++)
+    {
+        if(arr.A[i]>arr.A[i+1])
+        return 0;
+    }
+    return 1;
+}
 int main()
 {struct Array arr={{100,300,400},10,3};
-InsertSort(&arr,159);
+// InsertSort(&arr,159);
+printf("Sorted: %d\n",isSorted(arr));
 display(arr);
 return 0;
 }
