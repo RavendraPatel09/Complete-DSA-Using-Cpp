@@ -65,8 +65,7 @@ int Min(struct Array arr)
     return min;
 }
 int main()
-{struct Array arr={{2,3,4,5,6},10,5};
-
-display(arr);
+{struct Array arr={{13,56,78,23,7,3,9,1},10,8};
+printf("Minimum element is %d\n",Min(arr));
 return 0;
 }
