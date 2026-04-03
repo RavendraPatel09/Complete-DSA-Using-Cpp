@@ -104,30 +104,33 @@ void Rearrange(struct Array *arr)
         if(i<j)swap(&arr->A[i],&arr->A[j]);
     }
 }
-void Merge(struct Array *arr1,struct Array *arr2,struct Array *arr3)
+void Merge(struct Array *arr1, struct Array *arr2, struct Array *arr3)
 {
-    int i,j,k;
-    i=j=k=0;
+    int i=0, j=0, k=0;
+
     while(i<arr1->length && j<arr2->length)
     {
-        if(arr1->A[i]<arr2->A[j])
-        arr3->A[k++]=arr1->A[i++];
+        if(arr1->A[i] < arr2->A[j])
+            arr3->A[k++] = arr1->A[i++];
         else
-        arr3->A[k++]=arr2->A[j++];
+            arr3->A[k++] = arr2->A[j++];
     }
-    for(;i<arr1->length;i++)
-    arr3->A[k++]=arr1->A[i];
-    for(;j<arr2->length;j++)
-    arr3->A[k++]=arr2->A[j];
-    arr3->length=arr1->length+arr2->length;
-    arr3->size=10;
+
+    for(; i<arr1->length; i++)
+        arr3->A[k++] = arr1->A[i];
+
+    for(; j<arr2->length; j++)
+        arr3->A[k++] = arr2->A[j];
+
+    arr3->length = arr1->length + arr2->length;
+    arr3->size = 10;
 }
 int main()
-{struct Array arr1={{2,4,6,8,10},10,5};
+{
+struct Array arr1={{2,4,6,8,10},10,5};
 struct Array arr2={{1,3,5,7,9},10,5};
-struct Array arr3={{0},10,0};
-
-display(arr1);
-display(arr2);
+struct Array arr3;
+Merge(&arr1, &arr2, &arr3);
+display(arr3);
 return 0;
 }
