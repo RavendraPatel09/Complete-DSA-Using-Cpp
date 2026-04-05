@@ -1,224 +1,196 @@
-#include <stdio.h>
-#include <stdlib.h>
-struct Array {
+#include <iostream>
+using namespace std;
+
+class Array {
+private:
     int *A;
     int size;
     int length;
-};
-void Display(struct Array arr);
-void Append(struct Array *arr, int x);
-void Insert(struct Array *arr, int index, int x);
-int Delete(struct Array *arr, int index);
-void swap(int *x, int *y);
-int LinearSearch(struct Array *arr, int key);
-int BinarySearch(struct Array arr, int key);
-int RBinSearch(int a[], int l, int h, int key);
-int Get(struct Array arr, int index);
-void Set(struct Array *arr, int index, int x);
-int Max(struct Array arr);
-int Min(struct Array arr);
-int Sum(struct Array arr);
-float Avg(struct Array arr);
-void Reverse(struct Array *arr);
-void InsertSort(struct Array *arr, int x);
-struct Array* Intersection(struct Array *arr1, struct Array *arr2);
-void Display(struct Array arr) {
-    int i;
-    printf("\nElements are\n");
-    for(i = 0; i < arr.length; i++)
-        printf("%d ", arr.A[i]);
-    printf("\n");
-}
-void Append(struct Array *arr, int x) {
-    if(arr->length < arr->size)
-        arr->A[arr->length++] = x;
-}
 
-void Insert(struct Array *arr, int index, int x) {
-    int i;
-    if(index >= 0 && index <= arr->length) {
-        for(i = arr->length; i > index; i--)
-            arr->A[i] = arr->A[i - 1];
-        arr->A[index] = x;
-        arr->length++;
+    void swap(int *x, int *y) {
+        int temp = *x;
+        *x = *y;
+        *y = temp;
     }
-}
-int Delete(struct Array *arr, int index) {
-    int x = 0;
-    int i;
-    if(index >= 0 && index < arr->length) {
-        x = arr->A[index];
-        for(i = index; i < arr->length - 1; i++)
-            arr->A[i] = arr->A[i + 1];
-        arr->length--;
+
+public:
+    Array() {
+        size = 10;
+        length = 0;
+        A = new int[size];
+    }
+
+    Array(int sz) {   // FIX: constructor name
+        size = sz;
+        length = 0;
+        A = new int[size];
+    }
+
+    ~Array() {
+        delete[] A;
+    }
+
+    void Display() {
+        cout << "Elements are:\n";
+        for(int i = 0; i < length; i++)
+            cout << A[i] << " ";
+        cout << endl;
+    }
+
+    void Append(int x) {
+        if(length < size)
+            A[length++] = x;
+    }
+
+    void Insert(int index, int x) {
+        if(index >= 0 && index <= length) {
+            for(int i = length; i > index; i--)
+                A[i] = A[i - 1];
+            A[index] = x;
+            length++;   // FIX: arr->length ❌
+        }
+    }
+
+    int Delete(int index) {   // FIX: added class scope
+        int x = 0;
+        if(index >= 0 && index < length) {
+            x = A[index];
+            for(int i = index; i < length - 1; i++)
+                A[i] = A[i + 1];
+            length--;
+        }
         return x;
     }
-    return 0;
-}
-void swap(int *x, int *y) {
-    int temp;
-    temp = *x;
-    *x = *y;
-    *y = temp;
-}
-int LinearSearch(struct Array *arr, int key) {
-    int i;
-    for(i = 0; i < arr->length; i++) {
-        if(key == arr->A[i]) {
-            // Optional: Move to head or transposition can be added here
-            return i;
+
+    int LinearSearch(int key) {
+        for(int i = 0; i < length; i++) {
+            if(key == A[i])
+                return i;
         }
+        return -1;
     }
-    return -1;
-}
-int BinarySearch(struct Array arr, int key) {
-    int l, mid, h;
-    l = 0;
-    h = arr.length - 1;
-    
-    while(l <= h) {
-        mid = (l + h) / 2;
-        if(key == arr.A[mid])
-            return mid;
-        else if(key < arr.A[mid])
-            h = mid - 1;
-        else
-            l = mid + 1;
-    }
-    return -1;
-}
-int RBinSearch(int a[], int l, int h, int key) {
-    int mid;
-    if(l <= h) {
-        mid = (l + h) / 2;
-        if(key == a[mid])
-            return mid;
-        else if(key < a[mid])
-            return RBinSearch(a, l, mid - 1, key);
-        else
-            return RBinSearch(a, mid + 1, h, key);
-    }
-    return -1;
-}
-int Get(struct Array arr, int index) {
-    if(index >= 0 && index < arr.length)
-        return arr.A[index];
-    return -1;
-}
-void Set(struct Array *arr, int index, int x) {
-    if(index >= 0 && index < arr->length)
-        arr->A[index] = x;
-}
-int Max(struct Array arr) {
-    int max = arr.A[0];
-    int i;
-    for(i = 1; i < arr.length; i++) {
-        if(arr.A[i] > max)
-            max = arr.A[i];
-    }
-    return max;
-}
-int Min(struct Array arr) {
-    int min = arr.A[0];
-    int i;
-    for(i = 1; i < arr.length; i++) {
-        if(arr.A[i] < min)
-            min = arr.A[i];
-    }
-    return min;
-}
-int Sum(struct Array arr) {
-    int s = 0;
-    int i;
-    for(i = 0; i < arr.length; i++)
-        s += arr.A[i];
-    return s;
-}
-float Avg(struct Array arr) {
-    return (float)Sum(arr) / arr.length;
-}
-void Reverse(struct Array *arr) {
-    int i, j;
-    for(i = 0, j = arr->length - 1; i < j; i++, j--) {
-        swap(&arr->A[i], &arr->A[j]);
-    }
-}
-void InsertSort(struct Array *arr, int x) {
-    int i = arr->length - 1;
-    if(arr->length == arr->size)
-        return;
-    while(i >= 0 && arr->A[i] > x) {
-        arr->A[i + 1] = arr->A[i];
-        i--;
-    }
-    arr->A[i + 1] = x;
-    arr->length++;
-}
-struct Array* Intersection(struct Array *arr1, struct Array *arr2) {
-    int i, j, k;
-    i = j = k = 0;
-    
-    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
-    arr3->A = (int *)malloc(sizeof(int)*(arr1->length + arr2->length));
-    
-    while(i < arr1->length && j < arr2->length) {
-        if(arr1->A[i] < arr2->A[j])
-            i++;
-        else if(arr2->A[j] < arr1->A[i])
-            j++;
-        else if(arr1->A[i] == arr2->A[j]) {
-            arr3->A[k++] = arr1->A[i++];
-            j++;
+
+    int BinarySearch(int key) {   // FIX: added parameter
+        int l = 0, h = length - 1;
+
+        while(l <= h) {
+            int mid = (l + h) / 2;
+
+            if(key == A[mid])
+                return mid;
+            else if(key < A[mid])
+                h = mid - 1;
+            else
+                l = mid + 1;
         }
+        return -1;
     }
-    arr3->length = k;
-    arr3->size = 10;
-    return arr3;
-}
+
+    int Get(int index) {
+        if(index >= 0 && index < length)
+            return A[index];
+        return -1;
+    }
+
+    void Set(int index, int x) {
+        if(index >= 0 && index < length)
+            A[index] = x;
+    }
+
+    int Max() {
+        int max = A[0];
+        for(int i = 1; i < length; i++)
+            if(A[i] > max)
+                max = A[i];
+        return max;
+    }
+
+    int Min() {
+        int min = A[0];
+        for(int i = 1; i < length; i++)
+            if(A[i] < min)
+                min = A[i];
+        return min;
+    }
+
+    int Sum() {   // FIX: removed arr usage
+        int s = 0;
+        for(int i = 0; i < length; i++)
+            s += A[i];
+        return s;
+    }
+
+    float Avg() {
+        return (float)Sum() / length;
+    }
+
+    void Reverse() {
+        for(int i = 0, j = length - 1; i < j; i++, j--)
+            swap(&A[i], &A[j]);
+    }
+
+    void InsertSort(int x) {
+        int i = length - 1;
+        if(length == size) return;
+
+        while(i >= 0 && A[i] > x) {
+            A[i + 1] = A[i];
+            i--;
+        }
+        A[i + 1] = x;
+        length++;
+    }
+};
+
 int main() {
-    struct Array arr1;
-    int ch;
-    int x, index;
-    printf("Enter Size of Array: ");
-    scanf("%d", &arr1.size);
-    arr1.A = (int *)malloc(arr1.size * sizeof(int));
-    arr1.length = 0;
+    int size;
+    cout << "Enter Size of Array: ";
+    cin >> size;
+
+    Array arr1(size);
+
+    int ch, x, index;
+
     do {
-        printf("\n\n--- Menu ---\n");
-        printf("1. Insert\n");
-        printf("2. Delete\n");
-        printf("3. Search\n");
-        printf("4. Sum\n");
-        printf("5. Display\n");
-        printf("6. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &ch);
+        cout << "\n--- Menu ---\n";
+        cout << "1. Insert\n";
+        cout << "2. Delete\n";
+        cout << "3. Search\n";
+        cout << "4. Sum\n";
+        cout << "5. Display\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> ch;
+
         switch(ch) {
             case 1:
-                printf("Enter an element and index: ");
-                scanf("%d%d", &x, &index);
-                Insert(&arr1, index, x);
+                cout << "Enter element and index: ";
+                cin >> x >> index;
+                arr1.Insert(index, x);
                 break;
+
             case 2:
-                printf("Enter index: ");
-                scanf("%d", &index);
-                x = Delete(&arr1, index);
-                printf("Deleted Element is %d\n", x);
+                cout << "Enter index: ";
+                cin >> index;
+                cout << "Deleted element: " << arr1.Delete(index) << endl;
                 break;
+
             case 3:
-                printf("Enter element to search: ");
-                scanf("%d", &x);
-                index = LinearSearch(&arr1, x);
-                printf("Element index %d\n", index);
+                cout << "Enter element to search: ";
+                cin >> x;
+                cout << "Index: " << arr1.LinearSearch(x) << endl;
                 break;
+
             case 4:
-                printf("Sum is %d\n", Sum(arr1));
+                cout << "Sum: " << arr1.Sum() << endl;
                 break;
+
             case 5:
-                Display(arr1);
+                arr1.Display();
                 break;
         }
-    } while(ch < 6);
-    free(arr1.A);
+
+    } while(ch != 6);
+
     return 0;
 }
