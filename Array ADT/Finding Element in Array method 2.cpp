@@ -4,12 +4,14 @@ int main()
 {
     int arr[] = {3,2,5,6,8,9,1,7,4};
     int n = sizeof(arr)/sizeof(arr[0]);
-    int l = 1, h = n;
+    int l = 1, h = 12;
+    int H[100] = {0};
+    // Mark elements in hash table
+    for(int i = 0; i < n; i++)
     {
-    H[A[i]]++;
-        if(arr[i] - i != diff)
+        H[arr[i]]++;
     }
-    for(i=l ;i<=h ; i++)
+    for(int i = l; i <= h; i++)
     {
         if(H[i] == 0)
         {
