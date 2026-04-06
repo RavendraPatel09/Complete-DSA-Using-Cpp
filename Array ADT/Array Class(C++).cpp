@@ -57,8 +57,13 @@ int Array::Delete(int index)
     }
     return x;
 }
-int main(int argc, char const *argv[])
+int main()
 {
+    Array arr(10);
+    arr.Insert(0, 2);
+    arr.Insert(1, 4);
+    arr.Insert(2, 6);
+    arr.Display();
 
     return 0;
 }
