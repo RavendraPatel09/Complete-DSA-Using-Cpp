@@ -19,7 +19,7 @@ private:
     {
         size = sz;
         length = 0;
-        A = new int[sz];
+        A = new float[sz];
     }
     ~Array()
     {
