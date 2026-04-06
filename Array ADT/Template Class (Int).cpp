@@ -1,17 +1,18 @@
 #include<iostream>
 using namespace std;
+template <class T>
 class Array {
 private:
-    int *A;
+    T *A;
     int size;
     int length;
     public:
     Array()
     {
         size = 10;
-        A = new int[10];
+        A = new T[10];
         length = 0;
-        A = new int[size];
+        A = new T[size];
 
     }
     Array(int sz)
@@ -25,18 +26,20 @@ private:
         delete []A;
     }
     void Display();
-    void Insert(int index, int x);
-    int Delete(int index);
+    void Insert(int index, T x);
+    T Delete(int index);
 
 };
-void Array::Display()
+template <class T>
+void Array <T>::Display()
 {
     cout<<"Elements are: "<<endl;
     for(int i=0; i<length; i++)
         cout<<A[i]<<" ";
     cout<<endl;
 }
-void Array::Insert(int index, int x)
+template <class T>
+void Array <T>::Insert(int index, T x)
 {
     if(index>=0 && index<=length)
     {
@@ -46,8 +49,9 @@ void Array::Insert(int index, int x)
         length++;
     }
 }
-int Array::Delete(int index)
-{    int x = 0;
+template <class T>
+T Array <T>::Delete(int index)
+{    T   x = 0;
     if(index>=0 && index<length)
     {
         x = A[index];
@@ -59,7 +63,7 @@ int Array::Delete(int index)
 }
 int main()
 {
-    Array arr(10);
+    Array<int> arr(10);
     arr.Insert(0, 2);
     arr.Insert(1, 4);
     arr.Insert(2, 6);
