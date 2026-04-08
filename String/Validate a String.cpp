@@ -15,7 +15,7 @@ int valid (char *name)
 }
 int main()
 {
-    char*name = "Ravener123";
+    char name[] = "Ravener123";
     int i;
     for(i=0;name[i]!='\0';i++)
     if(valid(name))
