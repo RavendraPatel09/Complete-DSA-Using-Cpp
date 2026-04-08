@@ -3,6 +3,7 @@ using namespace std;
 int main()
 {
     char S[]="WELCOME";
+    char A[100];
     int i;
     for(i=0;S[i]!='\0';i++)
     {
