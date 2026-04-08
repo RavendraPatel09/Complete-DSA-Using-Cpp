@@ -15,7 +15,6 @@ int main()
     {
         H[arr[i]]++;
     }
-
     for(int i=0; i<=max; i++)
     {
         if(H[i] > 1)
