@@ -2,22 +2,26 @@
 using namespace std;
 int main()
 {
-    int n;
-    int arr[] = {3,2,5,6,8,9,1,7,4};
-    int l = 1, h = 12;
-    int H[100] = {0};
-    // Mark elements in hash table
-    for(int i = 0; i < n; i++)
+    int arr[] = {1,2,2,4,5,6,6,7,7,8,9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int max = arr[0];
+    for(int i=1; i<n; i++)
+    {
+        if(arr[i] > max)
+            max = arr[i];
+    }
+   int *H = new int[max+1](); 
+    for(int i=0; i<n; i++)
     {
         H[arr[i]]++;
     }
-    for(int i = l; i <= h; i++)
+
+    for(int i=0; i<=max; i++)
     {
-        if(H[i] == 0)
+        if(H[i] > 1)
         {
-            cout << "Missing element is: " << i << endl;
+            cout << i << " is repeated " << H[i] << " times" << endl;
         }
-        
     }
     return 0;
 }
