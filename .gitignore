@@ -1,0 +1,10 @@
+# macOS files
+.DS_Store
+# Debug files (VERY IMPORTANT for you)
+*.dSYM/
+# Compiled files
+*.out
+*.exe
+*.o
+# VS Code settings (optional)
+.vscode
