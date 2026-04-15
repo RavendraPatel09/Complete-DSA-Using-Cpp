@@ -2,56 +2,49 @@
 using namespace std;
 class diagonal
 {
-    private:
-
+private:
     int n;
     int *A;
-    public:
+public:
     diagonal(int n)
     {
         this->n = n;
         A = new int[n];
     }
-}
-void set(struct matrix *m, int i, int j, int x)
-{
-int get(struct matrix m, int i, int j)
-void display();
-diagonal(int n);
-};
-void diagonal::set(struct matrix *m, int i, int j, int x)
-{
-    if (i == j)
-        m->A[i - 1] = x;
-}
-int diagonal::get(struct matrix m, int i, int j)
-{
-    if (i == j)
-        return m.A[i - 1];
-    else
-        return 0;
-}
-void diagonal::display(struct matrix m)
-{
-    for (int i = 1; i <= m.n; i++)
+    void set(int i, int j, int x)
     {
-        for (int j = 1; j <= m.n; j++)
-        {
-            if (i == j)
-                cout << m.A[i - 1] << " ";
-            else                cout << "0 ";
-        }
-        cout << endl;   
+        if (i == j)
+            A[i - 1] = x;
     }
-}
+    int get(int i, int j)
+    {
+        if (i == j)
+            return A[i - 1];
+        else
+            return 0;
+    }
+    void display()
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = 1; j <= n; j++)
+            {
+                if (i == j)
+                    cout << A[i - 1] << " ";
+                else
+                    cout << "0 ";
+            }
+            cout << endl;
+        }
+    }
+};
 int main()
 {
-    struct matrix m;
-    m.n = 4;
-    set(&m, 1, 1, 5);
-    set(&m, 2, 2, 8);
-    set(&m, 3, 3, 9);
-    set(&m, 4, 4, 6);
-    display(m);
+    diagonal d(4);
+    d.set(1, 1, 3);
+    d.set(2, 2, 5);
+    d.set(3, 3, 10);
+    d.set(4, 4, 19);
+    d.display();
     return 0;
 }
