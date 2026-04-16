@@ -8,12 +8,12 @@ struct matrix
 void set(struct matrix *m, int i, int j, int x)
 {
     if(i >= j)
-        m->A[i*(i-1)/2 + j-1] = x;
+        m->A[m->n*(j-1) + (j-2)*(j-1)/2 + i - j] = x;
 }
 int get(struct matrix *m, int i, int j)
 {
     if(i >= j)
-        return m->A[i*(i-1)/2 + j-1];
+        return m->A[m->n*(j-1) + (j-2)*(j-1)/2 + i - j];
     else
         return 0;
 }
@@ -25,7 +25,7 @@ void display(struct matrix m)
         for(j = 1; j <= m.n; j++)
         {
             if(i >= j)
-                printf("%d ", m.A[i*(i-1)/2 + j-1]);
+                printf("%d ", m.A[m.n*(j-1) + (j-2)*(j-1)/2 + i - j]);
             else
                 printf("0 ");
         }
@@ -45,7 +45,8 @@ int main()
         for(j = 1; j <= m.n; j++)
         {
             scanf("%d", &x);
-            set(&m, i, j, x);
+            if(i >= j)
+                set(&m, i, j, x);
         }
     }
     printf("\n\n");
