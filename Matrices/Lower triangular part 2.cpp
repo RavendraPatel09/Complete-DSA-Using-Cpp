@@ -24,10 +24,7 @@ void display(struct matrix m)
     {
         for(j = 1; j <= m.n; j++)
         {
-            if(i >= j)
-                printf("%d ", m.A[i*(i-1)/2 + j-1]);
-            else
-                printf("0 ");
+            printf("%d ", get(&m, i, j));
         }
         printf("\n");
     }
@@ -39,16 +36,20 @@ int main()
     printf("Enter dimension: ");
     scanf("%d", &m.n);
     m.A = (int *)malloc(m.n*(m.n+1)/2 * sizeof(int));
-    printf("Enter all elements:\n");
+    for(i = 0; i < m.n*(m.n+1)/2; i++)
+        m.A[i] = 0;
+    printf("Enter full matrix:\n");
     for(i = 1; i <= m.n; i++)
     {
         for(j = 1; j <= m.n; j++)
         {
             scanf("%d", &x);
-            set(&m, i, j, x);
+            if(i >= j)
+                set(&m, i, j, x);
         }
     }
-    printf("\n\n");
+    printf("\nStored Matrix:\n");
     display(m);
+    free(m.A);
     return 0;
 }
