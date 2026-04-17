@@ -15,6 +15,19 @@ int main()
     A = (int *)malloc(n * (n + 1) / 2 * sizeof(int));
     do
     {
+
+    {
+        printf("\nMenu:\n");
+        printf("1. Create\n");
+        printf("2. Get\n");
+        printf("3. Set\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d", &ch);
+
+        switch (ch)
         switch (ch)
         {
         case 1: 

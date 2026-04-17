@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 struct matrix
-{
+{   
     int *A;
     int n;
 };
