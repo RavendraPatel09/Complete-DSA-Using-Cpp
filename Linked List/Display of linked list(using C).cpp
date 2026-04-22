@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 struct node
 {
     int data;
@@ -25,10 +26,6 @@ int main()
 {
     int A[]={3,5,7,10,15};
     create(A,5);
-    struct node *p=first;
-    while(p)
-    {
-        printf("%d ",p->data);
-        p=p->next;
-    }
+        struct node *p=first;
+    return 0;
 }
