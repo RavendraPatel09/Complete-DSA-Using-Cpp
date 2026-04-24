@@ -22,10 +22,20 @@ void create(int A[],int n)
         last=t;
     }
 }
+void display(struct node *p)
+{
+        while(p!=NULL)
+        {
+            printf("%d ",p->data);
+            p=p->next;
+        }
+
+}
 int main()
 {
     int A[]={3,5,7,10,15};
     create(A,5);
         struct node *p=first;
+        display(p);
     return 0;
 }
