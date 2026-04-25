@@ -29,15 +29,14 @@ void display(struct node *p)
             printf("%d ",p->data);
             p=p->next;
         }
-
 }
 int add(struct node *p)
 {
-  if(p==0)
+if(p==0)
     return 0;
-  else
-    return add(p->next)+p->data;    
-} 
+else
+    return add(p->next)+p->data;
+}
 int main()
 {
     int A[]={3,5,7,10,15};
