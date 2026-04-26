@@ -205,7 +205,10 @@ int main()
 {
     int A[] = {10, 20, 30, 40, 50};
     create(A, 5);
-    printf("Is the list sorted? %d\n", isSorted(first));
+    if (isSorted(first))
+        printf("The list is sorted.\n");
+    else
+        printf("The list is not sorted.\n");
     display(first);
     return 0;
 }
