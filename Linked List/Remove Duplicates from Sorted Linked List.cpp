@@ -224,6 +224,7 @@ int main()
     int A[] = {10, 20,20,30,30,30 ,30, 40, 50};
     create(A, 9);
     printf("Original list: ");
+    display(first);
     removeDuplicates(first);
     printf("List after removing duplicates: ");
     display(first);
