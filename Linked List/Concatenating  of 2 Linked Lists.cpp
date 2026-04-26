@@ -259,9 +259,6 @@ int main()
     int A[] = {10, 20, 30, 40, 50};
     int B[] = {60, 70, 80, 90, 100};
     create(A, 5);
-    struct node *second = NULL;
-    first = second;
-    create(B, 5);
     concatenate(first, second);
     display(first);
     return 0;
