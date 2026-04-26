@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdint.h>
 struct node
 {
     int data;
@@ -156,31 +157,17 @@ void sortedInsert(struct node *p, int x)
         }
         else
         {
-        while(p && p->data < x)
-        {
-            q = p;
-            p = p->next;
-        
-        }
-        if(p == first)
-        {
-            t->next = first;
-            first = t;
-        }
-        else
-        {
             t->next = q->next;
             q->next = t;
         }
     }
 }
-}
-void delete(struct node *p, int index)
+int Delete(struct node *p, int index)
 {
     struct node *q = NULL;
     int x = -1, i;
     if(index < 1 || index > count(p))
-        return -1;
+        return x;
     if(index == 1)
     {
         q = first;
@@ -206,7 +193,7 @@ int main()
 {
     int A[] = {10, 20, 30, 40, 50};
     create(A, 5);
-    delete(first, 1);
+    Delete(first, 1);
     display(first);
     return 0;
 }
