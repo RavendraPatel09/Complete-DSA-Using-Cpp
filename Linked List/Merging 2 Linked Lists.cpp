@@ -5,7 +5,7 @@ struct node
 {
     int data;
     struct node *next;
-} *first = NULL;
+} *first = NULL, *second = NULL, *third = NULL;
 void create(int A[], int n)
 {
     int i;
@@ -14,6 +14,23 @@ void create(int A[], int n)
     first->data = A[0];
     first->next = NULL;
     last = first;
+    for(i = 1; i < n; i++)
+    {
+        t = (struct node *)malloc(sizeof(struct node));
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+void create2(int A[], int n)
+{
+    int i;
+    struct node *t, *last;
+    second = (struct node *)malloc(sizeof(struct node));
+    second->data = A[0];
+    second->next = NULL;
+    last = second;
     for(i = 1; i < n; i++)
     {
         t = (struct node *)malloc(sizeof(struct node));
@@ -218,7 +235,7 @@ void reverse1(struct node *p)
         q->data = A[i--];
         q = q->next;
     }
-}
+} 
 void reverse2(struct node *p)
 {
     struct node *q = NULL, *r = NULL;
@@ -243,29 +260,23 @@ void reverse3(struct node *q, struct node *p)
 }
 void concatenate(struct node *p, struct node *q)
 {
-    struct node *last;
-    if(p == NULL)
-    {
-        first = q;
-        return;
-    }
-    last = p;
-    while(last->next != NULL)
-        last = last->next;
-    last->next = q;
+     third = p;
+        while(p->next != NULL)
+            p = p->next;
+        p->next = q;
 }
 void merge(struct node *p, struct node *q)
 {
     struct node *last;
     if(p->data < q->data)
     {
-        first = last = p;
+        third = last = p;
         p = p->next;
         last->next = NULL;
     }
     else
     {
-        first = last = q;
+        third = last = q;
         q = q->next;
         last->next = NULL;
     }
@@ -292,23 +303,10 @@ void merge(struct node *p, struct node *q)
 int main()
 {
     int A[] = {10, 20, 30, 40, 50};
-    int B[] = {15, 25, 35, 45, 55};
+    int B[] = {5, 15, 25, 35, 45};
     create(A, 5);
-    struct node *second;
-    second = (struct node *)malloc(sizeof(struct node));
-    second->data = B[0];
-    second->next = NULL;
-    struct node *last = second;
-    for(int i = 1; i < 5; i++)
-    {
-        struct node *t;
-        t = (struct node *)malloc(sizeof(struct node));
-        t->data = B[i];
-        t->next = NULL;
-        last->next = t;
-        last = t;
-    }
+    create2(B, 5);
     merge(first, second);
-    display(first);
+    display(third); 
     return 0;
 }
