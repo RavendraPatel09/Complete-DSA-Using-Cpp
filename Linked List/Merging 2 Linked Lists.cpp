@@ -218,7 +218,7 @@ void reverse1(struct node *p)
         q->data = A[i--];
         q = q->next;
     }
-} 
+}
 void reverse2(struct node *p)
 {
     struct node *q = NULL, *r = NULL;

@@ -5,7 +5,7 @@ struct node
 {
     int data;
     struct node *next;
-} *first = NULL;
+} *first = NULL, *second = NULL, *third = NULL;
 void create(int A[], int n)
 {
     int i;
@@ -14,6 +14,23 @@ void create(int A[], int n)
     first->data = A[0];
     first->next = NULL;
     last = first;
+    for(i = 1; i < n; i++)
+    {
+        t = (struct node *)malloc(sizeof(struct node));
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+void create2(int A[], int n)
+{
+    int i;
+    struct node *t, *last;
+    second = (struct node *)malloc(sizeof(struct node));
+    second->data = A[0];
+    second->next = NULL;
+    last = second;
     for(i = 1; i < n; i++)
     {
         t = (struct node *)malloc(sizeof(struct node));
@@ -243,23 +260,23 @@ void reverse3(struct node *q, struct node *p)
 }
 void concatenate(struct node *p, struct node *q)
 {
-    struct node *last;
-    if(p == NULL)
-    {
-        first = q;
-        return;
-    }
-    last = p;
-    while(last->next != NULL)
-        last = last->next;
-    last->next = q;
+     third = p;
+        while(p->next != NULL)
+            p = p->next;
+        p->next = q;
 }
 int main()
 {
     int A[] = {10, 20, 30, 40, 50};
     int B[] = {60, 70, 80, 90, 100};
     create(A, 5);
-    concatenate(first, second);
+    create2(B, 5);
+    printf("First List: ");
     display(first);
+    printf("Second List: ");
+    display(second);
+    concatenate(first, second);
+    printf("Concatenated List: ");
+    display(third); 
     return 0;
 }
