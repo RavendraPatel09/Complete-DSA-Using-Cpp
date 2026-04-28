@@ -47,7 +47,7 @@ int main()
 {
     int A[]={1,2,3,4,5};
     create(A,5);
-    R   display(Head);
+    Rdisplay(Head);
     return 0;
     
 }
