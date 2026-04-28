@@ -73,12 +73,12 @@ else
     p->next=t;  
 }
 }
-void Delete(struct Node *p,int index)
+int Delete(struct Node *p,int index)
 {
     struct Node *q;
-    int i,x;
-    if(index<1 || index>length(first))
-        return;
+    int x=-1,i;
+    if(index<0 || index>length(first))
+        return -1;
     if(index==1)
     {
         first=first->next;
@@ -89,15 +89,16 @@ void Delete(struct Node *p,int index)
     }
     else
     {
-        for(i=0;i<index-2;i++)
+        for(i=0;i<index-1;i++)
             p=p->next;
         q=p->next;
         p->next=q->next;
         x=q->data;
+        if(q->next)
+            q->next->prev=p;
         free(q);
-        if(p->next)
-            p->next->prev=p;
     }
+    return x;
 }
 int main()
 {
