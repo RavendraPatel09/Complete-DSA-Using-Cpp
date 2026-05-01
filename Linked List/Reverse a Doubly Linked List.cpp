@@ -47,7 +47,7 @@ int length(struct Node *p)
 void reverse(struct Node *p)
 {
     struct Node *temp;
-    while(p)
+    while(p!=NULL)
     {
         temp=p->next;
         p->next=p->prev;
