@@ -99,10 +99,32 @@ void preOrder(struct Node *p)
         preOrder(p->rchild);
     }
 }
+void inOrder(struct Node *p)
+{
+    if (p)
+    {
+        inOrder(p->lchild);
+        printf("%d ", p->data);
+        inOrder(p->rchild);
+    }
+}
+void postOrder(struct Node *p)
+{
+    if (p)
+    {       
+        postOrder(p->lchild);
+        postOrder(p->rchild);
+        printf("%d ", p->data);
+    }
+}
 int main()
 {
     createTree();
     printf("\nPreorder Traversal: ");
     preOrder(root);
+    printf("\nInorder Traversal: ");
+    inOrder(root);
+    printf("\nPostorder Traversal: ");
+    postOrder(root);
     return 0;
 }
