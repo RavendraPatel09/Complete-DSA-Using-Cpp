@@ -18,22 +18,26 @@ void create(struct queue *q, int size)
     q->size = size;
     q->front = q->rear = 0;
     q->Q = (struct Node **)malloc(q->size * sizeof(struct Node *));
-} 
+}
 void enqueue(struct queue *q, struct Node *x)
 {
     if ((q->rear + 1) % q->size == q->front)
+    {
         printf("Queue is Full\n");
+    }
     else
     {
         q->rear = (q->rear + 1) % q->size;
         q->Q[q->rear] = x;
     }
 }
-struct Node* dequeue(struct queue *q)
+struct Node *dequeue(struct queue *q)
 {
     struct Node *x = NULL;
     if (q->front == q->rear)
+    {
         printf("Queue is Empty\n");
+    }
     else
     {
         q->front = (q->front + 1) % q->size;
@@ -45,7 +49,7 @@ int isEmpty(struct queue *q)
 {
     return q->front == q->rear;
 }
-struct node *root = NULL;
+struct Node *root = NULL;
 void createTree()
 {
     struct Node *p, *t;
@@ -56,44 +60,49 @@ void createTree()
     scanf("%d", &x);
     root = (struct Node *)malloc(sizeof(struct Node));
     root->data = x;
-    root->lchild = root->rchild = NULL;
+    root->lchild = NULL;
+    root->rchild = NULL;
     enqueue(&q, root);
     while (!isEmpty(&q))
     {
         p = dequeue(&q);
-        printf("Enter left child of %d: ", p->data);
+        printf("Enter left child of %d (-1 for no child): ", p->data);
         scanf("%d", &x);
         if (x != -1)
         {
             t = (struct Node *)malloc(sizeof(struct Node));
             t->data = x;
-            t->lchild = t->rchild = NULL;
+            t->lchild = NULL;
+            t->rchild = NULL;
             p->lchild = t;
             enqueue(&q, t);
         }
-        printf("Enter right child of %d: ", p->data);
+        printf("Enter right child of %d (-1 for no child): ", p->data);
         scanf("%d", &x);
         if (x != -1)
         {
             t = (struct Node *)malloc(sizeof(struct Node));
             t->data = x;
-            t->lchild = t->rchild = NULL;
+            t->lchild = NULL;
+            t->rchild = NULL;
             p->rchild = t;
             enqueue(&q, t);
         }
     }
 }
+void preOrder(struct Node *p)
+{
+    if (p)
+    {
+        printf("%d ", p->data);
+        preOrder(p->lchild);
+        preOrder(p->rchild);
+    }
+}
 int main()
 {
-    struct queue q;
-    create(&q, 5);
-    enqueue(&q, 10);
-    enqueue(&q, 20);
-    enqueue(&q, 30);
-    enqueue(&q, 40);
-    printf("%d ", dequeue(&q));
-    printf("%d ", dequeue(&q));
-    printf("%d ", dequeue(&q));
-    printf("%d ", dequeue(&q));
+    createTree();
+    printf("\nPreorder Traversal: ");
+    preOrder(root);
     return 0;
 }
