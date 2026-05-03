@@ -3,28 +3,97 @@
 struct Node
 {
     int data;
-    struct Node *left;
-    struct Node *right;
+    struct Node *lchild;
+    struct Node *rchild;
 };
-struct Node* createNode(int value)
+struct queue
 {
-    struct Node *t;
-    t = (struct Node*)malloc(sizeof(struct Node));
-    t->data = value;
-    t->left = NULL;
-    t->right = NULL;
-    return t;
+    int size;
+    int front;
+    int rear;
+    struct Node **Q;
+};
+void create(struct queue *q, int size)
+{
+    q->size = size;
+    q->front = q->rear = 0;
+    q->Q = (struct Node **)malloc(q->size * sizeof(struct Node *));
+} 
+void enqueue(struct queue *q, struct Node *x)
+{
+    if ((q->rear + 1) % q->size == q->front)
+        printf("Queue is Full\n");
+    else
+    {
+        q->rear = (q->rear + 1) % q->size;
+        q->Q[q->rear] = x;
+    }
+}
+struct Node* dequeue(struct queue *q)
+{
+    struct Node *x = NULL;
+    if (q->front == q->rear)
+        printf("Queue is Empty\n");
+    else
+    {
+        q->front = (q->front + 1) % q->size;
+        x = q->Q[q->front];
+    }
+    return x;
+}
+int isEmpty(struct queue *q)
+{
+    return q->front == q->rear;
+}
+struct node *root = NULL;
+void createTree()
+{
+    struct Node *p, *t;
+    int x;
+    struct queue q;
+    create(&q, 100);
+    printf("Enter root value: ");
+    scanf("%d", &x);
+    root = (struct Node *)malloc(sizeof(struct Node));
+    root->data = x;
+    root->lchild = root->rchild = NULL;
+    enqueue(&q, root);
+    while (!isEmpty(&q))
+    {
+        p = dequeue(&q);
+        printf("Enter left child of %d: ", p->data);
+        scanf("%d", &x);
+        if (x != -1)
+        {
+            t = (struct Node *)malloc(sizeof(struct Node));
+            t->data = x;
+            t->lchild = t->rchild = NULL;
+            p->lchild = t;
+            enqueue(&q, t);
+        }
+        printf("Enter right child of %d: ", p->data);
+        scanf("%d", &x);
+        if (x != -1)
+        {
+            t = (struct Node *)malloc(sizeof(struct Node));
+            t->data = x;
+            t->lchild = t->rchild = NULL;
+            p->rchild = t;
+            enqueue(&q, t);
+        }
+    }
 }
 int main()
 {
-    struct Node *root;
-    root = createNode(10);
-    root->left = createNode(20);
-    root->right = createNode(30);
-    root->left->left = createNode(40);
-    root->left->right = createNode(50);
-    printf("Root Node: %d\n", root->data);
-    printf("Left Child: %d\n", root->left->data);
-    printf("Right Child: %d\n", root->right->data);
+    struct queue q;
+    create(&q, 5);
+    enqueue(&q, 10);
+    enqueue(&q, 20);
+    enqueue(&q, 30);
+    enqueue(&q, 40);
+    printf("%d ", dequeue(&q));
+    printf("%d ", dequeue(&q));
+    printf("%d ", dequeue(&q));
+    printf("%d ", dequeue(&q));
     return 0;
 }
