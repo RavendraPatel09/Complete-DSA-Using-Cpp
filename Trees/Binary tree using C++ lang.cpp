@@ -1,4 +1,4 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 class Node
 {
@@ -9,123 +9,142 @@ public:
 };
 class Queue
 {
-public:
+private:
     int size;
     int front;
     int rear;
     Node **Q;
+public:
     Queue(int size)
     {
-        this->size = size;
-        front = rear = 0;
-        Q = new Node *[size];
+        this->size=size;
+        front=rear=0;
+        Q=new Node*[size];
     }
     void enqueue(Node *x)
     {
-        if ((rear + 1) % size == front)
+        if((rear+1)%size==front)
         {
-            cout << "Queue is Full" << endl;
+            cout<<"Queue is Full"<<endl;
         }
         else
         {
-            rear = (rear + 1) % size;
-            Q[rear] = x;
+            rear=(rear+1)%size;
+            Q[rear]=x;
         }
     }
     Node *dequeue()
     {
-        Node *x = NULL;
-        if (front == rear)
+        Node *x=NULL;
+        if(front==rear)
         {
-            cout << "Queue is Empty" << endl;
+            cout<<"Queue is Empty"<<endl;
         }
         else
         {
-            front = (front + 1) % size;
-            x = Q[front];
+            front=(front+1)%size;
+            x=Q[front];
         }
         return x;
     }
     int isEmpty()
     {
-        return front == rear;
+        return front==rear;
     }
 };
-Node *root = NULL;
-void createTree()
+class Tree
 {
-    Node *p, *t;
+private:
+    Node *root;
+public:
+    Tree()
+    {
+        root=NULL;
+    }
+    void createTree();
+    void preOrder(Node *p);
+    void inOrder(Node *p);
+    void postOrder(Node *p);
+    Node *getRoot()
+    {
+        return root;
+    }
+};
+void Tree::createTree()
+{
+    Node *p,*t;
     int x;
     Queue q(100);
-    cout << "Enter root value: ";
-    cin >> x;
-    root = new Node;
-    root->data = x;
-    root->lchild = NULL;
-    root->rchild = NULL;
+    cout<<"Enter root value: ";
+    cin>>x;
+    root=new Node;
+    root->data=x;
+    root->lchild=NULL;
+    root->rchild=NULL;
     q.enqueue(root);
-    while (!q.isEmpty())
+    while(!q.isEmpty())
     {
-        p = q.dequeue();
-        cout << "Enter left child of " << p->data << " (-1 for no child): ";
-        cin >> x;
-        if (x != -1)
+        p=q.dequeue();
+        cout<<"Enter left child of "<<p->data<<" (-1 for no child): ";
+        cin>>x;
+        if(x!=-1)
         {
-            t = new Node;
-            t->data = x;
-            t->lchild = NULL;
-            t->rchild = NULL;
-            p->lchild = t;
+            t=new Node;
+            t->data=x;
+            t->lchild=NULL;
+            t->rchild=NULL;
+            p->lchild=t;
             q.enqueue(t);
         }
-        cout << "Enter right child of " << p->data << " (-1 for no child): ";
-        cin >> x;
-        if (x != -1)
+        cout<<"Enter right child of "<<p->data<<" (-1 for no child): ";
+        cin>>x;
+        if(x!=-1)
         {
-            t = new Node;
-            t->data = x;
-            t->lchild = NULL;
-            t->rchild = NULL;
-            p->rchild = t;
+            t=new Node;
+            t->data=x;
+            t->lchild=NULL;
+            t->rchild=NULL;
+            p->rchild=t;
             q.enqueue(t);
         }
     }
 }
-void preOrder(Node *p)
+void Tree::preOrder(Node *p)
 {
-    if (p)
+    if(p)
     {
-        cout << p->data << " ";
+        cout<<p->data<<" ";
         preOrder(p->lchild);
         preOrder(p->rchild);
     }
 }
-void inOrder(Node *p)
+void Tree::inOrder(Node *p)
 {
-    if (p)
+    if(p)
     {
         inOrder(p->lchild);
-        cout << p->data << " ";
+        cout<<p->data<<" ";
         inOrder(p->rchild);
     }
 }
-void postOrder(Node *p)
+void Tree::postOrder(Node *p)
 {
-    if (p)
+    if(p)
     {
         postOrder(p->lchild);
         postOrder(p->rchild);
-        cout << p->data << " ";
+        cout<<p->data<<" ";
     }
 }
 int main()
 {
-    createTree();
-    cout << "\nPreorder Traversal: ";
-    preOrder(root);
-    cout << "\nInorder Traversal: ";
-    inOrder(root);
-    cout << "\nPostorder Traversal: ";
-    postOrder(root);
+    Tree t;
+    t.createTree();
+    cout<<"\nPreorder Traversal: ";
+    t.preOrder(t.getRoot());
+    cout<<"\nInorder Traversal: ";
+    t.inOrder(t.getRoot());
+    cout<<"\nPostorder Traversal: ";
+    t.postOrder(t.getRoot());
     return 0;
 }
