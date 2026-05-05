@@ -105,10 +105,19 @@ int count(struct Node *root)
         return 0;
     return count(root->lchild) + count(root->rchild) + 1;
 }
+int height(struct Node *root)
+{
+    if (root == NULL)
+        return 0;
+    int x = height(root->lchild);
+    int y = height(root->rchild);
+    return x > y ? x + 1 : y + 1;
+}
 int main()
 {
     Treecreate();
     printf("\nNumber of nodes: %d", count(root));
+    printf("\nHeight of tree: %d", height(root));
     return 0;
 }
 //run this code and input the following values when prompted:
