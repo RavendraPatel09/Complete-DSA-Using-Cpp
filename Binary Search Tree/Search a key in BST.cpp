@@ -45,7 +45,7 @@ void inorder(struct node *p)
     }
 }
 struct node * search(int key)
-
+{
 struct node *t=root;
 while(t!=NULL){
     if(key==t->data)
@@ -55,7 +55,10 @@ while(t!=NULL){
     else
         t=t->rchild;
 
-}int main()
+}
+return NULL;
+}
+int main()
 {
     struct node *temp;
     insert(10);
