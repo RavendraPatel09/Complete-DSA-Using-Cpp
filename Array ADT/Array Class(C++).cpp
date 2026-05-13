@@ -12,7 +12,6 @@ private:
         A = new int[10];
         length = 0;
         A = new int[size];
-
     }
     Array(int sz)
     {
@@ -27,7 +26,6 @@ private:
     void Display();
     void Insert(int index, int x);
     int Delete(int index);
-
 };
 void Array::Display()
 {
