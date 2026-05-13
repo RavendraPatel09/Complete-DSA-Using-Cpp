@@ -30,5 +30,6 @@ int main()
     C[1]=(int *)malloc(4*sizeof(int));
     C[2]=(int *)malloc(4*sizeof(int));
     return 0;
+    
 }
 
