@@ -13,7 +13,6 @@ private:
         A = new T[10];
         length = 0;
         A = new T[size];
-
     }
     Array(int sz)
     {
@@ -28,7 +27,6 @@ private:
     void Display();
     void Insert(int index, T x);
     T Delete(int index);
-
 };
 template <class T>
 void Array <T>::Display()
