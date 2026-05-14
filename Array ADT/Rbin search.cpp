@@ -6,7 +6,6 @@ struct Array
     int size;
     int length;
 };
-
 void display(struct Array arr)
 {
     int i;
@@ -54,7 +53,6 @@ int RBinarySearchHelper(struct Array *arr, int l, int h, int key)
     }
     return -1;
 }
-
 int RBinarySearch(struct Array *arr,int key)
 {
     return RBinarySearchHelper(arr, 0, arr->length-1, key);
