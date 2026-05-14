@@ -16,7 +16,7 @@ public:
         length = 0;
         A = new int[size];
     }
-    Array(int sz) {   // FIX: constructor name
+    Array(int sz) {
         size = sz;
         length = 0;
         A = new int[size];
@@ -111,7 +111,6 @@ public:
     void InsertSort(int x) {
         int i = length - 1;
         if(length == size) return;
-
         while(i >= 0 && A[i] > x) {
             A[i + 1] = A[i];
             i--;
@@ -120,16 +119,12 @@ public:
         length++;
     }
 };
-
 int main() {
     int size;
     cout << "Enter Size of Array: ";
     cin >> size;
-
     Array arr1(size);
-
     int ch, x, index;
-
     do {
         cout << "\n--- Menu ---\n";
         cout << "1. Insert\n";
@@ -140,36 +135,29 @@ int main() {
         cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> ch;
-
         switch(ch) {
             case 1:
                 cout << "Enter element and index: ";
                 cin >> x >> index;
                 arr1.Insert(index, x);
                 break;
-
             case 2:
                 cout << "Enter index: ";
                 cin >> index;
                 cout << "Deleted element: " << arr1.Delete(index) << endl;
                 break;
-
             case 3:
                 cout << "Enter element to search: ";
                 cin >> x;
                 cout << "Index: " << arr1.LinearSearch(x) << endl;
                 break;
-
             case 4:
                 cout << "Sum: " << arr1.Sum() << endl;
                 break;
-
             case 5:
                 arr1.Display();
                 break;
         }
-
     } while(ch != 6);
-
     return 0;
 }
