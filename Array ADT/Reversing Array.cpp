@@ -93,7 +93,6 @@ void Reverse2(struct Array *arr)
         swap(&arr->A[i],&arr->A[j]);
     }
 }
-
 int main()
 {struct Array arr={{2,3,4,5,6},10,5};
 Reverse2(&arr);
