@@ -107,7 +107,6 @@ void Rearrange(struct Array *arr)
 void Merge(struct Array *arr1, struct Array *arr2, struct Array *arr3)
 {
     int i=0, j=0, k=0;
-
     while(i<arr1->length && j<arr2->length)
     {
         if(arr1->A[i] < arr2->A[j])
@@ -115,20 +114,16 @@ void Merge(struct Array *arr1, struct Array *arr2, struct Array *arr3)
         else
             arr3->A[k++] = arr2->A[j++];
     }
-
     for(; i<arr1->length; i++)
         arr3->A[k++] = arr1->A[i];
-
     for(; j<arr2->length; j++)
         arr3->A[k++] = arr2->A[j];
-
     arr3->length = arr1->length + arr2->length;
     arr3->size = 10;
 }
 void Union(struct Array *arr1, struct Array *arr2, struct Array *arr3)
 {
     int i=0, j=0, k=0;
-
     while(i<arr1->length && j<arr2->length)
     {
         if(arr1->A[i] < arr2->A[j])
@@ -142,20 +137,16 @@ void Union(struct Array *arr1, struct Array *arr2, struct Array *arr3)
             j++;
         }
     }
-
     for(; i<arr1->length; i++)
         arr3->A[k++] = arr1->A[i];
-
     for(; j<arr2->length; j++)
         arr3->A[k++] = arr2->A[j];
-
     arr3->length = k;
     arr3->size = 10;
 }
 void Intersection(struct Array *arr1, struct Array *arr2, struct Array *arr3)
 {
     int i=0, j=0, k=0;
-
     while(i<arr1->length && j<arr2->length)
     {
         if(arr1->A[i] < arr2->A[j])
@@ -169,7 +160,6 @@ void Intersection(struct Array *arr1, struct Array *arr2, struct Array *arr3)
             j++;
         }
     }
-
     arr3->length = k;
     arr3->size = 10;
 }
