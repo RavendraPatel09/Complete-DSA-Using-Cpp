@@ -128,7 +128,7 @@ int main() {
     AVL tlr;
     tlr.root = tlr.rInsert(tlr.root, 50);
     tlr.root = tlr.rInsert(tlr.root, 10);
-    tlr.root = tlr.rInsert(tlr.root, 20);
+    tlr.root = tlr.rInsert(tlr.root, 25);
     tlr.Inorder();
     cout << endl;
     cout << tlr.root->data << endl;
