@@ -317,8 +317,8 @@ int isLoop(struct node *f)
 int main()
 {
     struct node *t1, *t2;
-    int A[] = {10, 20, 30, 40, 50};
-    create(A, 5);
+    int A[] = {10, 20, 30, 40, 50 ,70};
+    create(A, 6);
     t1 = first->next->next;
     t2 = first->next->next->next->next;
     t2->next = t1; // Creating a loop for testing
