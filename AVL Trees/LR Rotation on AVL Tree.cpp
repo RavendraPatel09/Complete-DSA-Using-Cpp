@@ -135,7 +135,7 @@ int main() {
     AVL trl;
     trl.root = trl.rInsert(trl.root, 20);
     trl.root = trl.rInsert(trl.root, 50);
-    trl.root = trl.rInsert(trl.root, 30);
+    trl.root = trl.rInsert(trl.root, 35);
     trl.Inorder();
     cout << endl;
     cout << trl.root->data << endl;
