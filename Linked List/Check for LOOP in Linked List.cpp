@@ -313,7 +313,6 @@ int isLoop(struct node *f)
     } while(p && q && p != q);
     return (p == q) ? 1 : 0;
 }
-
 int main()
 {
     struct node *t1, *t2;
@@ -321,7 +320,7 @@ int main()
     create(A, 6);
     t1 = first->next->next;
     t2 = first->next->next->next->next;
-    t2->next = t1; // Creating a loop for testing
+    t2->next = t1; 
     printf("Checking for loop in the linked list...\n");
     if(isLoop(first))
         printf("Loop detected in the linked list.\n");
