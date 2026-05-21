@@ -320,7 +320,7 @@ int main()
     create(A, 6);
     t1 = first->next->next;
     t2 = first->next->next->next->next;
-    t2->next = t1; 
+    t2->next = t1;
     printf("Checking for loop in the linked list...\n");
     if(isLoop(first))
         printf("Loop detected in the linked list.\n");
