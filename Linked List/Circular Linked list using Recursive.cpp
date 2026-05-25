@@ -45,8 +45,8 @@ void Rdisplay(struct Node *h)
 }
 int main()
 {
-    int A[]={1,2,3,4,5};
-    create(A,5);
+    int A[]={1,2,3,4,5,6};
+    create(A,6);
     Rdisplay(Head);
     return 0;
     
