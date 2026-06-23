@@ -1,9 +1,0 @@
-
-hiii there #include
-
-
-
-pip install -r requirements.txt
-cp .env.example .env   # fill in your postgres password + JWT secret
-psql -U postgres -c "CREATE DATABASE medi_mvp;"
-uvicorn main:app --reload --port 8000
